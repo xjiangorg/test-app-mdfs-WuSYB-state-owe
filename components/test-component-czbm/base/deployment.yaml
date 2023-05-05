@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: test-component-czbm
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-component-czbm
+    app.kubernetes.io/part-of: test-app-mdfs
+  name: test-component-czbm
+  namespace: build-e2e-yuci-tenant
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: python-app
+      app.kubernetes.io/instance: test-component-czbm
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: python-app
+        app.kubernetes.io/instance: test-component-czbm
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio-qe/test-images:f5e8208c1c6045caaa1e217b3cab6369
+        name: my-python
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
+status: {}
