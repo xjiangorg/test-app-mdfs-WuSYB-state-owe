@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: test-component-czbm
+  namespace: build-e2e-yuci-tenant
+spec:
+  replicas: 1
+  selector: {}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio-qe/test-images@sha256:7dbca256a9d45a8a6d3fa1d5810fc963451455da8c595cc5b242d1212fc4596b
+        name: my-python
+        resources: {}
+status: {}
